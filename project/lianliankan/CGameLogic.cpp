@@ -61,11 +61,11 @@ bool CGameLogic::IsLink(CGraph &graph,Vertex v1,Vertex v2)
     return false;
 }
 
+// 深度优先搜索Depth-First-Search，判断V1，V2是否联通,联通返回true
 bool CGameLogic::SearchPath(CGraph &g, int V0, int V1)
 {
     PushVertex(V0);
 
-    // 深度优先搜索Depth-First-Search，判断V1，V2是否联通,联通返回true
     if(Corner>2)
     {
         return false;
@@ -83,7 +83,7 @@ bool CGameLogic::SearchPath(CGraph &g, int V0, int V1)
         int VexNum=g.GetVexnum();
         for (int i=0;i<VexNum;i++)
         {
-            if(IsExsit(i))
+            if(IsExsit(i))  //已在路径中
             {
                 continue;
             }
@@ -95,11 +95,9 @@ bool CGameLogic::SearchPath(CGraph &g, int V0, int V1)
                     continue;
                 }
 
-                if(SearchPath(g,i,V1))
-                {
-                    return true;
-                }
-                PopVertex();
+                //是同色联通，向下递归
+                if(SearchPath(g,i,V1)) return true;
+                else PopVertex();    //回退
             }
         }
     }
@@ -127,9 +125,9 @@ void CGameLogic::PopVertex()
     Num--;
 }
 
+// 判断数组m_anPath中，连续三个顶点是否构成一个顶点
 bool CGameLogic::IsCornor()
 {
-    // 判断数组m_anPath中，连续三个顶点是否构成一个顶点
 
     if(Num < 3)
     {
@@ -160,9 +158,9 @@ bool CGameLogic::IsCornor()
 
 }
 
+// 判断nVi点是否保存到联通数组m_anPath中
 bool CGameLogic::IsExsit(int nVi)
 {
-    // 判断nVi点是否保存到联通数组m_anPath中
     for (int i=0;i<Num;i++)
     {
         if(Path[i]==nVi)
@@ -216,33 +214,19 @@ void CGameLogic::UpdateArc(CGraph &graph,int nRow,int nCol)
     }
 }
 
-
-
-
-
-
-
-void CGameLogic::ResetGraph(CGraph &g)
+// 消子函数
+void CGameLogic::Clear(CGraph &graph,Vertex v1,Vertex v2)
 {
-    QRandomGenerator random;
-    random.seed(quint32(time(nullptr)));
-    int r1,r2;
+    int v1Index=v1.row*mapCol+v1.col;
+    int v2Index=v2.row*mapCol+v2.col;
+    graph.UpdateVertex(v1Index,-1);
+    graph.UpdateVertex(v2Index,-1);
 
-    for (int i=0;i<DEFAULT_RANDOM_TIMES;i++)
-    {
-        r1 = random.bounded(mapCol*mapRow);
-        r2 = random.bounded(mapCol*mapRow);
-        if(g.GetVertex(r1)==BLANK||g.GetVertex(r2)==BLANK)
-        {
-            continue;
-        }
-        g.Exchange(r1,r2);
-        UpdateArc(g,r1/mapCol,r1%mapCol);
-        UpdateArc(g,r2/mapCol,r2%mapCol);
-    }
-
+    UpdateArc(graph,v1.row,v1.col);
+    UpdateArc(graph,v2.row,v2.col);
 }
 
+// 图中顶点是否为空，为空则返回true
 bool CGameLogic::IsBlank(CGraph &g)
 {
     for (int i=0;i<g.GetVexnum();i++)
@@ -255,51 +239,5 @@ bool CGameLogic::IsBlank(CGraph &g)
     return true;
 }
 
-void CGameLogic::GetWay(int *anPath,int &anNum)
-{
-    anNum=Num;
-    for (int i=0;i<Num;i++)
-    {
-        anPath[i]=Path[i];
-    }
-}
-
-bool CGameLogic::SearchValidPath(CGraph graph)
-{
-    qint16 vexNum = graph.GetVexnum();
-
-    for(qint16 i=0;i<vexNum;i++)
-    {
-        if(graph.GetVertex(i)==BLANK)
-        {
-            continue;
-        }
-        for (qint16 j=i+1;j<vexNum;j++)
-        {
-            if(i==j||graph.GetVertex(j)!=graph.GetVertex(i))
-            {
-                continue;
-            }
-            Num=0;
-            Corner=0;
-            if(SearchPath(graph,i,j))
-            {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-void CGameLogic::Clear(CGraph &graph,Vertex v1,Vertex v2)
-{
-    int v1Index=v1.row*mapCol+v1.col;
-    int v2Index=v2.row*mapCol+v2.col;
-    graph.UpdateVertex(v1Index,-1);
-    graph.UpdateVertex(v2Index,-1);
-
-    UpdateArc(graph,v1.row,v1.col);
-    UpdateArc(graph,v2.row,v2.col);
-}
 
 

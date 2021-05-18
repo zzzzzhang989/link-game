@@ -1,6 +1,5 @@
 ﻿#include "CBasicGame.h"
-#include "iostream"
-using namespace std;
+
 
 CBasicGame::CBasicGame():CGameControl()
 {

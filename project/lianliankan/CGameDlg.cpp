@@ -1,7 +1,6 @@
 ﻿#include "CGameDlg.h"
 #include "ui_CGameDlg.h"
-#include "iostream"
-using namespace std;
+
 
 CGameDlg::CGameDlg(QWidget *parent,int tmapCol,int tmapRow) :
     QMainWindow(parent),
@@ -18,7 +17,6 @@ CGameDlg::CGameDlg(QWidget *parent,int tmapCol,int tmapRow) :
     mapCol=DEFAULT_MAP_COL;
     mapRow=DEFAULT_MAP_ROW;
 
-    shouldPainer=false;
     isPause=false;
 
     // 初始化窗口
