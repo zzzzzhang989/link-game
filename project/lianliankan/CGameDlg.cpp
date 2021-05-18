@@ -210,79 +210,10 @@ CGameDlg::~CGameDlg()
 
 }
 
-void CGameDlg::closeEvent(QCloseEvent *)
-{
-
-}
-
-qint16 CGameDlg::getMapLen() const
-{
-
-}
-
-void CGameDlg::setMapLen(const qint16 &value)
-{
-
-}
-
-void CGameDlg::on_btnPause_clicked()
-{
-
-}
-
-void CGameDlg::on_btnTips_clicked()
-{
-
-}
-
-void CGameDlg::on_btnReset_clicked()
-{
-
-}
-
-void CGameDlg::DrawGameGrade()
-{
-
-}
-
-void CGameDlg::CalculateGameGrade()
-{
-
-}
 
 bool CGameDlg::eventFilter(QObject *watched, QEvent *event)
 {
 
 }
 
-void CGameDlg::painterLine()
-{
 
-}
-
-void CGameDlg::time_out()
-{
-
-}
-
-void CGameDlg::on_btnHelp_clicked()
-{
-
-}
-
-void CGameDlg::on_btnSetting_clicked()
-{
-
-}
-
-
-void CGameDlg::on_btnTool_clicked()
-{
-
-}
-
-
-void CGameDlg::changeStyle()
-{
-
-}

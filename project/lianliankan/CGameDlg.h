@@ -54,7 +54,7 @@ protected:
 
     int lastTime;            // 剩余时间
 
-    int mapCol;      // 地图的大小
+    int mapCol;       // 地图的大小
     int mapRow;      // 地图的高度
 
     bool shouldPainer;  // 是否应该画图
@@ -64,6 +64,7 @@ protected:
     void painterLine();
 
 public:
+    //explicit CGameDlg(QWidget *parent = nullptr,qint16 mapCol=DEFAULT_MAP_COL,qint16 mapRow=DEFAULT_MAP_ROW);
     CGameDlg(QWidget *parent = nullptr,int mapCol=DEFAULT_MAP_COL,int mapRow=DEFAULT_MAP_ROW);
 
     void setGameMode(int i=0);    // 设置游戏模式
@@ -85,29 +86,9 @@ public:
 
 private slots:
 
-    void changeStyle();         // 修改主题
-
     void on_btnStart_clicked();    // 点击开始游戏
 
     void OnLButtonUp();       // 按下图片后的响应函数,更新游戏地图
-
-    void on_btnReset_clicked();     // 重新排列游戏地图
-
-    void on_btnPause_clicked();     // 暂停游戏
-
-    void on_btnTips_clicked();      // 获取提示
-
-    void time_out();                // 时间变化反应函数
-
-    void closeEvent(QCloseEvent *);
-
-
-
-    void on_btnHelp_clicked();
-
-    void on_btnTool_clicked();
-
-    void on_btnSetting_clicked();
 
 signals:
     void ExitWin(); //新建一个关闭信号槽
