@@ -1,0 +1,10 @@
+debug/CBasicGame.o
+debug/CGameControl.o
+debug/CGameDlg.o
+debug/CGameLogic.o
+debug/CGraph.o
+debug/CLLKDlg.o
+debug/main.o
+debug/qrc_res.o
+debug/moc_CGameDlg.o
+debug/moc_CLLKDlg.o

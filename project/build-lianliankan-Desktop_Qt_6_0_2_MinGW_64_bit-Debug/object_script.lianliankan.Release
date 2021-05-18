@@ -1,0 +1,10 @@
+release/CBasicGame.o
+release/CGameControl.o
+release/CGameDlg.o
+release/CGameLogic.o
+release/CGraph.o
+release/CLLKDlg.o
+release/main.o
+release/qrc_res.o
+release/moc_CGameDlg.o
+release/moc_CLLKDlg.o
